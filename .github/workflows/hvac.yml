@@ -1,0 +1,41 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - name: Grant execute permission for gradlew
+      run: |
+        echo "going to the build directory"
+        cd /home/ubuntu/android-automotive/
+        echo "Setting up mk file"
+        cp device/generic/car/common/module_HvacApplication device/generic/car/common/car.mk
+        echo "Setting up the environment"
+        source build/envsetup.sh
+        echo "Select the aosp image"
+        lunch aosp_car_x86_64-userdebug
+        echo "Build apk module"
+        build/soong/soong_ui.bash --make-mode -j$(nproc) HvacApplication
+        echo "check if build succeeded"
+        if [[ $? -gt 0 ]]
+        then
+            echo "remove bootstrap since build failed"
+            rm -rf out/soong/.bootstrap out/soong/.intermediates
+            echo "Rebuild the module"
+            build/soong/soong_ui.bash --make-mode -j$(nproc) HvacApplication
+        fi
+        echo "Check if apk is created"
+        ls out/target/product/generic_car_x86_64/system/app/HvacApplication/HvacApplication.apk
+        echo "Building Android image with the generated APK"
+        m snod
+        echo "Build complete"
+    - name: Build with Gradle
+      run: ./gradlew build
