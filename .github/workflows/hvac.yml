@@ -37,5 +37,15 @@ jobs:
         echo "Building Android image with the generated APK"
         m snod
         echo "Build complete"
-    - name: Build with Gradle
-      run: ./gradlew build
+    # - name: Build with Gradle
+    #   run: |
+    - name: Upload to JFrog
+      env: 
+        # URL: "${{ secrets.JF_URL }}/artifactory/generic-local/${{ github.repository }}/${{ github.ref_name }}/artifact.zip"
+        URL: "http://13.201.132.114:8082/artifactory/generic-local/Wipro-Organization-105/codespace-demo/build_images"
+      run: |
+        echo "Uploading to: ${URL}"
+        curl -sSf -v \
+          -H "Authorization: Bearer ${{ secrets.JF_ACCESS_TOKEN }}" \
+          -T build_images \
+          "${URL}"
