@@ -54,7 +54,10 @@ jobs:
           
         curl -sSf -v \
           -H "Authorization: Bearer ${{ secrets.JF_ACCESS_TOKEN }}" \
-          -T /home/ubuntu/android-automotive/out/target/product/generic_car_x86_64/system.img
+          -T /home/ubuntu/android-automotive/out/target/product/generic_car_x86_64/system.img \
           "${URL}"
+         # curl -sSf -v \
+         # -H "Authorization: Bearer ${{ secrets.JF_ACCESS_TOKEN }}" -T /home/ubuntu/android-automotive/out/target/product/generic_car_x86_64/system.img "http://13.201.132.114:8082/artifactory/generic-local/Wipro-Organization-105/codespace-demo/"
+        
 
         
