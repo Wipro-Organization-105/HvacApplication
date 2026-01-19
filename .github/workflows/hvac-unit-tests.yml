@@ -2,11 +2,9 @@ name: HVAC Unit Tests (Testing Branch)
 
 on:
   push:
-    branches:
-      - Testing
+    branches: [ testing ]
   pull_request:
-    branches:
-      - Testing
+    branches: [ testing ]
 
 jobs:
   unit-tests:
@@ -16,25 +14,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Prepare AOSP Environment
+      - name: Run HVAC Unit Tests (Soong)
+        shell: bash
         run: |
-          echo "Moving to AOSP root"
-          cd /home/ubuntu/android-automotive/
+          set -e
 
-          echo "Initializing build environment"
+          echo "Moving to AOSP root"
+          cd /home/ubuntu/android-automotive
+
+          echo "Setting up build environment"
           source build/envsetup.sh
 
-          echo "Selecting target"
+          echo "Selecting lunch target"
           lunch aosp_car_x86_64-userdebug
 
-      - name: Build HVAC Unit Test Module
-        run: |
-          cd /home/ubuntu/android-automotive
-          echo "Building hvac-utils-test"
+          echo "Building unit tests"
           m hvac-utils-test
 
-      - name: Run HVAC Unit Tests
-        run: |
-          cd /home/ubuntu/android-automotive
-          echo "Running hvac-utils-test"
+          echo "Running unit tests"
           atest hvac-utils-test
+
+          echo "Unit tests completed successfully"
