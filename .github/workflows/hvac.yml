@@ -22,6 +22,12 @@ jobs:
         source build/envsetup.sh
         echo "Select the aosp image"
         lunch aosp_car_x86_64-userdebug
+        echo "================ RUN UNIT TESTS ================"
+        echo "Build unit test module"
+        m hvac-utils-test
+        echo "Run unit tests"
+        atest hvac-utils-test
+        echo "=============== UNIT TESTS PASSED ==============="
         echo "Build apk module"
         build/soong/soong_ui.bash --make-mode -j$(nproc) HvacApplication
         echo "check if build succeeded"
