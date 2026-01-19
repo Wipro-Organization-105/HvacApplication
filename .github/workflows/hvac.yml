@@ -57,9 +57,6 @@ jobs:
         echo "Building Android image with the generated APK"
         m snod
         echo "Build complete"
-        # ---------------------
-    # - name: Build with Gradle
-    #   run: |
     - name: Upload to JFrog
       env: 
         # URL: "${{ secrets.JF_URL }}/artifactory/generic-local/${{ github.repository }}/${{ github.ref_name }}/artifact.zip"
