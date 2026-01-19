@@ -16,7 +16,7 @@ jobs:
       run: |
         if [[ ! -f ~/build-lock ]]
         then
-            echo /dev/null > ~/build-lock
+            cat /dev/null > ~/build-lock
         fi
         toLoop='yes'
         while [[ "$toLoop" == 'yes' ]]
