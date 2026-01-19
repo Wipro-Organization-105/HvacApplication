@@ -2,9 +2,9 @@ name: HVAC Unit Tests (Testing Branch)
 
 on:
   push:
-    branches: [ testing ]
+    branches: [ Testing ]
   pull_request:
-    branches: [ testing ]
+    branches: [ Testing ]
 
 jobs:
   unit-tests:
@@ -20,7 +20,7 @@ jobs:
           set -e
 
           echo "Moving to AOSP root"
-          cd /home/ubuntu/android-automotive
+          cd /home/ubuntu/android-automotive/
 
           echo "Setting up build environment"
           source build/envsetup.sh
