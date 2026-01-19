@@ -12,6 +12,26 @@ jobs:
     runs-on: self-hosted
 
     steps:
+    - name: Acquire Lock or wait for the build
+      run: |
+        if [[ ! -f ~/build-lock ]]
+        then
+            echo /dev/null > ~/build-lock
+        fi
+        toLoop='yes'
+        while [[ "$toLoop" == 'yes' ]]
+        do
+        if [[ ! -z $(cat ~/build-lock) ]]
+        then
+            echo "Build Locked, waiting for 30 seconds of minutes"
+            echo "to loop ? $toLoop"
+            sleep 30
+        else
+            echo "Locking"
+            echo "Locked" >~/build-lock
+            toLoop='no'
+        fi
+        done
     - name: Grant execute permission for gradlew
       run: |
         echo "going to the build directory"
@@ -37,5 +57,5 @@ jobs:
         echo "Building Android image with the generated APK"
         m snod
         echo "Build complete"
-    - name: Build with Gradle
-      run: ./gradlew build
+    - name: Release the lock
+      run: cat /dev/null > ~/build-lock
