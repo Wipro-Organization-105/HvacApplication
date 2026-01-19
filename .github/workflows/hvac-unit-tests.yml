@@ -19,7 +19,7 @@ jobs:
       - name: Prepare AOSP Environment
         run: |
           echo "Moving to AOSP root"
-          cd /home/ubuntu/android-automotive
+          cd /home/ubuntu/android-automotive/
 
           echo "Initializing build environment"
           source build/envsetup.sh
