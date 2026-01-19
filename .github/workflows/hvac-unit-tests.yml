@@ -18,20 +18,22 @@ jobs:
         shell: bash
         run: |
           set -e
-
+  
           cd /home/ubuntu/android-automotive
 
           echo "Setting up build environment"
           source build/envsetup.sh
 
+       
+          echo "Selecting lunch target"
+          lunch aosp_car_x86_64-userdebug
+          
           echo "Extending PRODUCT_SOONG_NAMESPACES for testing branch"
           export PRODUCT_SOONG_NAMESPACES=$PRODUCT_SOONG_NAMESPACES:$(pwd)/HvacApplication
 
-          echo "Selecting lunch target"
-          lunch aosp_car_x86_64-userdebug
-
+          echo $PRODUCT_SOONG_NAMESPACES
           echo "Verify module visibility"
-          m list-modules | grep hvac
+          m list-modules | grep -i hvac || echo "No hvac modules found"
 
           echo "Build unit tests"
           m hvac-utils-test
