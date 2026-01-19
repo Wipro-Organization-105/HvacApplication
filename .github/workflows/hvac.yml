@@ -60,6 +60,7 @@ jobs:
     - name: Upload to JFrog
       env: 
         # URL: "${{ secrets.JF_URL }}/artifactory/generic-local/${{ github.repository }}/${{ github.ref_name }}/artifact.zip"
+        
         # URL: "http://13.201.132.114:8082/artifactory/generic-local/Wipro-Organization-105/codespace-demo/system.img"
         URL: "http://3.108.251.3:8082/artifactory/generic-local/Wipro-Organization-105/codespace-demo/system.img"
       run: |
