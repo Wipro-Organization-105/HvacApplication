@@ -1,8 +1,8 @@
 name: Android CI
 
 on:
-  push:
-    branches: [ "master" ]
+  # push:
+  #   branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
 
@@ -32,7 +32,7 @@ jobs:
             toLoop='no'
         fi
         done
-    - name: Grant execute permission for gradlew
+    - name: Build The APK and create a IMG
       run: |
         echo "going to the build directory"
         cd /home/ubuntu/android-automotive/
@@ -57,5 +57,28 @@ jobs:
         echo "Building Android image with the generated APK"
         m snod
         echo "Build complete"
+        # ---------------------
+    # - name: Build with Gradle
+    #   run: |
+    - name: Upload to JFrog
+      env: 
+        # URL: "${{ secrets.JF_URL }}/artifactory/generic-local/${{ github.repository }}/${{ github.ref_name }}/artifact.zip"
+        # URL: "http://13.201.132.114:8082/artifactory/generic-local/Wipro-Organization-105/codespace-demo/system.img"
+        URL: "http://3.108.251.3:8082/artifactory/generic-local/Wipro-Organization-105/codespace-demo/system.img"
+      run: |
+        echo "Uploading to: ${URL}"
+          
+        # curl -sSf -v \
+        #   -H "Authorization: Bearer ${{ secrets.JF_ACCESS_TOKEN }}" \
+        #   -T /home/ubuntu/android-automotive/out/target/product/generic_car_x86_64/system.img \
+        #   "${URL}"
+         # curl -sSf -v \
+         # -H "Authorization: Bearer cmVmdGtuOjAxOjE4MDAwOTkwNTA6OHNjSGdLTDhLR2J6N0xRMExCajM3dmxNU3k0" -T /home/ubuntu/android-automotive/out/target/product/generic_car_x86_64/system.img "http://13.201.132.114:8082/artifactory/generic-local/Wipro-Organization-105/codespace-demo/"
+        
+        curl -uadmin:cmVmdGtuOjAxOjE4MDAwOTkwNTA6OHNjSGdLTDhLR2J6N0xRMExCajM3dmxNU3k0 \
+        -T /home/ubuntu/android-automotive/out/target/product/generic_car_x86_64/system.img \
+        "${URL}"
+
+        
     - name: Release the lock
       run: cat /dev/null > ~/build-lock
