@@ -15,26 +15,26 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run HVAC Unit Tests (Soong)
-  shell: bash
-  run: |
-    set -e
+        shell: bash
+        run: |
+          set -e
 
-    cd /home/ubuntu/android-automotive
+          cd /home/ubuntu/android-automotive
 
-    echo "Setting up build environment"
-    source build/envsetup.sh
+          echo "Setting up build environment"
+          source build/envsetup.sh
 
-    echo "Extending PRODUCT_SOONG_NAMESPACES for testing branch"
-    export PRODUCT_SOONG_NAMESPACES=$PRODUCT_SOONG_NAMESPACES:$(pwd)/HvacApplication
+          echo "Extending PRODUCT_SOONG_NAMESPACES for testing branch"
+          export PRODUCT_SOONG_NAMESPACES=$PRODUCT_SOONG_NAMESPACES:$(pwd)/HvacApplication
 
-    echo "Selecting lunch target"
-    lunch aosp_car_x86_64-userdebug
+          echo "Selecting lunch target"
+          lunch aosp_car_x86_64-userdebug
 
-    echo "Verify module visibility"
-    m list-modules | grep hvac
+          echo "Verify module visibility"
+          m list-modules | grep hvac
 
-    echo "Build unit tests"
-    m hvac-utils-test
+          echo "Build unit tests"
+          m hvac-utils-test
 
-    echo "Run unit tests"
-    atest hvac-utils-test
+          echo "Run unit tests"
+          atest hvac-utils-test
