@@ -22,10 +22,11 @@ jobs:
         cd /home/ubuntu/android-automotive
         echo "=== Building test module ==="
         m hvac-utils-test
-        echo "=== Running unit tests ==="
+        echo "=== Running unit tests ===  "
         atest hvac-utils-test
 
     - name: Build APK
+    
       run: |
         cd /home/ubuntu/android-automotive
         build/soong/soong_ui.bash --make-mode -j$(nproc) HvacApplication
