@@ -13,6 +13,10 @@ class MainActivity : Activity() {
             textSize = 22f
             setPadding(32, 32, 32, 32)
         }
-        setContentView(tv)
+        setContentView(tv)   
+    }
+
+    fun add(a: Int, b: Int): Int {
+        return a + b
     }
 }

@@ -1,0 +1,16 @@
+android_test {
+    name: "hvac-utils-test",
+
+    srcs: [
+        "src/**/*.kt",
+    ],
+
+    static_libs: [
+        "junit",
+        "androidx.test.core",
+    ],
+
+    sdk_version: "current",
+
+    test_suites: ["general-tests"],
+}

@@ -1,43 +1,16 @@
 android_app {
     name: "HvacApplication",
-
-    // Kotlin + Java app sources
+    // Compile from source
     srcs: [
         "src/main/java/**/*.kt",
+        "src/main/java/**/*.java",
     ],
-
-    // Reuse Java utils via library
-    static_libs: [
-        "hvac-utils",
-    ],
-
     manifest: "src/main/AndroidManifest.xml",
     resource_dirs: ["src/main/res"],
 
-    certificate: "platform",
-    privileged: false,
-    sdk_version: "current",
-}
-
-java_library {
-    name: "hvac-utils",
-
-    srcs: [
-        "src/main/java/**/*.java",
-    ],
-}
-
-java_test {
-    name: "hvac-utils-test",
-
-    srcs: [
-        "src/test/java/**/*.java",
-    ],
-
-    static_libs: [
-        "hvac-utils",
-        "junit",
-    ],
-
-    test_suites: ["general-tests"],
+    // Build settings
+    certificate: "platform",        // platform-signed system app
+    privileged: false,              // set true if you need /system/priv-app
+    sdk_version: "current",         // or "system_current" for system APIs only
+    // Minify/opt settings can be added if needed
 }
