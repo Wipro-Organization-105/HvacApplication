@@ -8,9 +8,7 @@ on:
 
 jobs:
   build:
-
     runs-on: self-hosted
-
     steps:
     - name: Acquire Lock or wait for the build
       run: |
