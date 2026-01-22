@@ -4,7 +4,6 @@
 
     <uses-sdk android:minSdkVersion="29" android:targetSdkVersion="33"/>
 
-    <!--Test-->
     <!-- Optional category for AAOS, not strictly required for a simple launcher app -->
     <application
         android:label="@string/app_name"
