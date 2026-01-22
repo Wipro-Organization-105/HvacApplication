@@ -7,7 +7,7 @@ ARG USER_GID=$USER_UID
 # Create a the usr and add sudo support
 RUN apt-get update && apt-get install -y sudo \
     && groupadd --gid $USER_GID $USERNAME \
-    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m -s /bin/bash $USERNAME \
     && echo $USERNAME ALL=\(ALL\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 # Install AOSP build dependencies
