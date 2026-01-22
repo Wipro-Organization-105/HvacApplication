@@ -4,7 +4,8 @@
         "dockerfile": "Dockerfile"
     },
     "features": {
-        "ghcr.io/devcontainers/features/git:1": {}
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers-extra/features/cmake:1.0.0": {}
     },
     "customizations": {
         "vscode": {
@@ -14,7 +15,6 @@
             ]
         }
     },
-    "remoteUser": "developer",
     "mounts": [
         "source=${localWorkspaceFolder},target=/workspace/aosp,type=bind"
     ]
