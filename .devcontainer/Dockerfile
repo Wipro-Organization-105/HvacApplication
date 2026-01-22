@@ -13,33 +13,21 @@ RUN apt-get update && apt-get install -y sudo \
 # Install AOSP build dependencies
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
-        bc \
         bison \
-        build-essential \
         curl \
         flex \
         g++-multilib \
         gcc-multilib \
         gnupg \
         gperf \
-        imagemagick \
         lib32ncurses-dev \
         lib32readline-dev \
         lib32z1-dev \
         liblz4-tool \
-        libncurses5-dev \
-        libsdl1.2-dev \
-        libssl-dev \
-        libxml2 \
-        libxml2-utils \
-        lzop \
         openjdk-11-jdk-headless \
         pngcrush \
         rsync \
-        schedtool \
         unzip \
-        x11proto-core-dev \
-        xsltproc \
         zip \
         zlib1g-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
