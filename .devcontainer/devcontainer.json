@@ -17,6 +17,5 @@
     "remoteUser": "developer",
     "mounts": [
         "source=${localWorkspaceFolder},target=/workspace/aosp,type=bind"
-    ],
-    "workspaceFolder": "/workspace/aosp"
+    ]
 }

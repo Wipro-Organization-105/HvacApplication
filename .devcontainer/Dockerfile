@@ -49,4 +49,4 @@ RUN mkdir -p /usr/local/bin && curl https://storage.googleapis.com/git-repo-down
 
 
 #Set the working directory
-#WORKDIR /workspace/aosp
+WORKDIR /workspace/aosp
