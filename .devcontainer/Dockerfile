@@ -1,13 +1,13 @@
 FROM mcr.microsoft.com/devcontainers/base:ubuntu-22.04
 
 ARG USERNAME=developer
-ARG USER_UID=1000
+ARG USER_UID=1005
 ARG USER_GID=$USER_UID
 
 # Create a the usr and add sudo support
-RUN groupadd --gid $USER_GID $USERNAME \
+RUN apt-get update && apt-get install -y sudo \
+    && groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
-    && apt-get update && apt-get install -y sudo \
     && echo $USERNAME ALL=\(ALL\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 # Install AOSP build dependencies
