@@ -17,6 +17,8 @@ metadata:
     github.com/project-slug: Wipro-Organization-105/HvacApplication
     github.com/workflows: Wipro-Organization-105/HvacApplication
     backstage.io/techdocs-ref: dir:.
+    compliance-status: "PENDING"
+    license-type: "GPL"
 spec:
   type: service
   lifecycle: experimental
