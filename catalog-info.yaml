@@ -125,6 +125,17 @@ spec:
   
 ---
 apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: sushmaPatthipati
+  namespace: default
+spec:
+  profile:
+    displayName: Sushma
+  memberOf: [Wipro-Group-A]
+
+---
+apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
   name: Wipro-Group-A
