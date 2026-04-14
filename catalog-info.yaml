@@ -18,7 +18,7 @@ metadata:
     github.com/workflows: Wipro-Organization-105/HvacApplication
     backstage.io/techdocs-ref: dir:.
     compliance-status: "PENDING"
-    fossa.io/project-name: "HvacApplication"
+    fossa.io/project-name: "git+github.com/Wipro-Organization-105/HvacApplication"
     license-type: "GPL"
 spec:
   type: service
